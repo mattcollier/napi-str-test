@@ -1,0 +1,18 @@
+[package]
+name = "napi-str-test"
+version = "0.1.0"
+authors = ["Matthew Collier <mcollier@digitalbazaar.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+[dependencies.node-bindgen]
+git = "https://github.com/mattcollier/node-bindgen"
+branch = "jsvalue-str"
+# path = "../../fork/node-bindgen"
+features = []
+[build_dependencies.node-bindgen]
+git = "https://github.com/mattcollier/node-bindgen"
+branch = "jsvalue-str"
+# path = "../../fork/node-bindgen"
+features = ["build"]
