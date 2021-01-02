@@ -4,8 +4,6 @@ const Benchmark = require('benchmark');
 
 const suite = new Benchmark.Suite();
 
-console.log('Foo');
-
 assert.strictEqual(
   addon.giveStr(Buffer.from('this is a tést 中 of utf-8')),
   'this is a tést 中 of utf-8');
@@ -13,16 +11,11 @@ assert.strictEqual(
   addon.giveString('this is a tést 中 of utf-8'),
   'this is a tést 中 of utf-8');
 
-// FIXME: this logging introduces some issue with memory that causes the
-// assertion above to fail, commenting this line out will allow the assertion
-// to pass!?
-console.log('Foo');
-
 const buffers = [];
 const strings = [];
 
-for(let i = 0; i < 3; ++i) {
-  const b = _makeid(i * 5 * 2);
+for(let i = 0; i < 20; ++i) {
+  const b = _makeid(10 * Math.pow(2, i));
   strings.push(b);
   buffers.push(Buffer.from(b));
 }

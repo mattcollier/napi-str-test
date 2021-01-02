@@ -7,12 +7,12 @@ edition = "2018"
 [lib]
 crate-type = ["cdylib"]
 [dependencies.node-bindgen]
-git = "https://github.com/mattcollier/node-bindgen"
-branch = "jsvalue-str"
+git = "https://github.com/infinyon/node-bindgen"
+branch = "master"
 # path = "../../fork/node-bindgen"
 features = []
 [build_dependencies.node-bindgen]
-git = "https://github.com/mattcollier/node-bindgen"
-branch = "jsvalue-str"
+git = "https://github.com/infinyon/node-bindgen"
+branch = "master"
 # path = "../../fork/node-bindgen"
 features = ["build"]
