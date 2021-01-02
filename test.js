@@ -7,7 +7,7 @@ const suite = new Benchmark.Suite();
 console.log('Foo');
 
 assert.strictEqual(
-  addon.giveStr(Buffer.from('this is a tést 中 of utf-8')),
+  addon.giveStr(Buffer.from('this is a tést 中 of utf-8\0')),
   'this is a tést 中 of utf-8');
 assert.strictEqual(
   addon.giveString('this is a tést 中 of utf-8'),
@@ -24,7 +24,7 @@ const strings = [];
 for(let i = 0; i < 3; ++i) {
   const b = _makeid(i * 5 * 2);
   strings.push(b);
-  buffers.push(Buffer.from(b));
+  buffers.push(Buffer.concat([Buffer.from(b), Buffer.from('\0')]));
 }
 
 for(const [index, value] of buffers.entries()) {
@@ -33,7 +33,7 @@ for(const [index, value] of buffers.entries()) {
       minSamples: 50,
       fn: () => {
         // FIXME: NOOP for now currently segfaults
-        // addon.giveStr(value);
+        addon.giveStr(value);
       }
     })
     .add(`string [SIZE=${value.length}]`, {
